@@ -1,0 +1,4 @@
+coinmarketcap_top100.db
+__pycache__/
+*.pyc
+.env
