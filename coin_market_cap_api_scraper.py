@@ -67,7 +67,7 @@ async def main():
     db_connection = setup_database()
 
     async with httpx.AsyncClient() as client:
-        tasks = [fetch_page(client, start) for start in range(1, 301, 50)]
+        tasks = [fetch_page(client, start) for start in range(1, 551, 50)]
         pages = await asyncio.gather(*tasks)
 
         for page_data in pages:
