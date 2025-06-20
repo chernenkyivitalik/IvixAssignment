@@ -9,7 +9,7 @@ import httpx
 URL = 'https://api.coingecko.com/api/v3/simple/price'
 
 MAX_CONSECUTIVE_FAILURES = 5
-BASIC_TIMEOUT = 10
+BASIC_TIMEOUT = 1
 MAX_TIMEOUT = BASIC_TIMEOUT * (2 ** (MAX_CONSECUTIVE_FAILURES - 1))
 
 logger = logging.getLogger(__name__)
@@ -24,7 +24,7 @@ async def fetch_price(client, currency_symbol):
         'include_last_updated_at': True,
     }
 
-    resp = await client.get(URL, params=params, timeout=BASIC_TIMEOUT)
+    resp = await client.get(URL, params=params, timeout=4.0)
     resp.raise_for_status()
     data = resp.json()
     return data[currency_symbol]['usd']
